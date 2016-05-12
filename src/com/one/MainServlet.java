@@ -1,29 +1,27 @@
-package com.yinlei;
+package com.one;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ServletCookie2 删除客户端缓存的cookie
+ * Servlet implementation class MainServlet 登录成功的跳转的页面
  */
-@WebServlet("/ServletCookie2")
-public class ServletCookie2 extends HttpServlet {
-
+@WebServlet("/MainServlet")
+public class MainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 要想删除客户端存储的cookie，采用的办法是
-		// 创建一个同名的cookie，然后将存活时间设置为0(毫秒级的数)，然后覆盖客户端存储的cookie
-		
-		Cookie cookie = new Cookie("lastaccesstime", "");
-		cookie.setMaxAge(0);  //表示立即删除
-		//发送到客户端
-		response.addCookie(cookie);
-		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+
+		String name = (String) request.getAttribute("name");
+		out.write("欢迎" + name + "过来！！！");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

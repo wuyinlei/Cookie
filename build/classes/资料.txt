@@ -1,0 +1,21 @@
+一、如何唯一的确定一个Cookie
+	域名   + 访问路径   +  Cookie的名字
+二、游览器到底带不带Cookie(谁说了算)
+	是由游览器说了算
+	游览器通过判断，你在地址栏中敲入的资源地址，startWith(在硬盘上存储的Cookie里面存储的路径)为true
+	那就带，如果没有就不带
+三、Cookie
+	1、Cookie的特性
+		1)name：Cookie的名字
+		2)value：Cookie的值
+		3)path：可选的Cookie的存储路径   默认情况下存储的路径是访问Servlet所在的路径
+		4)MaxAge：可选，最大的存储时间，默认情况下是存放在缓存区域中的，生命周期就是一个会话
+		
+		version ：Cookie版本
+		domain：域名(哪个网站)
+		Comment:备注
+		
+	2、服务端如何发送Cookie到游览器
+		HttpServletResponse.addCookie(javax.servlet.http.Cookie)
+		每个网站最多支持20个Cookie，总共支持最多300多个，每个Cookie最大4kb(Cookie的
+		资源是非常少的，Cookie中存储的数据都是非常有必要的重要性的数据)
